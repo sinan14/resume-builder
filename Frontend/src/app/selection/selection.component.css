@@ -1,0 +1,197 @@
+.containers{
+  width: 90%;
+  margin: 0 auto;
+}
+
+.policy{
+  background-image: url(../assets/background.jpg);
+  background-size: cover;
+  background-origin: center;
+  background-repeat: no-repeat;
+  height: 380px;
+  padding: 60px 0;
+
+}
+
+.round{
+  padding: 23px;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  font-size: 34px;
+  background: rgba(255, 255, 255, .2);
+  transition: all .3s ease;
+  margin: 0 auto;
+  position: relative;
+
+
+}
+
+.round-icon{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+.policy-card h2{
+
+  transition: all .3s ease;
+  font-weight: 700;
+  font-size: 16px;
+  color: #fff;
+  text-transform: uppercase;
+  margin: 12px 0 5px;
+  
+}
+
+.policy-card p{
+  color: #dbdbdb;
+  font-style: italic;
+}
+
+.policy-card:hover .round{
+  background: #ff4000;
+  cursor: pointer;
+}
+
+.policy-card:hover .h2{
+  color: #ff4000;
+  cursor: pointer;
+}
+
+.policy-product{
+  padding: 60px 0;
+  background: #eee;
+}
+
+.policy-p-card{
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  border-bottom: 1px solid #a8a8a8;
+  position: relative;
+  top: -170px;
+}
+
+.date{
+  position: absolute;
+  top: 0;
+  left: 30px;
+  z-index: 2;
+  background: #ff4000;
+  padding: 15px 10px;
+  text-align: center;
+  border-radius: 0 0 4px 4px;
+}
+
+.date h3{
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.date h4{
+  color: #eee;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+}
+
+.policy-image{
+  
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.policy-image img{
+  width: 100%;
+  height: 100%;
+  transition: all .3s ease;
+}
+
+.policy-image img:hover{
+  transform: scale(1.2);
+}
+
+.policy-p-card h2{
+  text-transform: capitalize;
+  line-height: 24px;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 18px 0 10px;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+
+.policy-p-card h2:hover{
+  color: #ff4000;
+}
+
+.policy-p-card p{
+  
+  color: #777;
+  line-height: 21px;
+  font-size: 14px;
+  transition: all .3s ease;
+  font-weight: 500;
+}
+
+.read-more{
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 14px 0;
+  display: block;
+  background: #333;
+  text-align: center;
+  text-decoration: none;
+  transition: all .3s ease;
+}
+
+.read-more i{
+  margin-left: 4px;
+}
+
+.read-more:hover{
+  background: #ff4000;
+  color: #fff;
+}
+
+.read-more:hover i{
+  margin-left: 6px;
+}
+
+.button {
+  position: absolute;
+ 
+  left: 13.5%;
+  top: 45%;
+  text-align: center;
+  opacity: 1;
+  transition: opacity .35s ease;
+}
+
+.button a {
+  text-decoration: none;
+  padding: 8px 40px;
+  text-align: center;
+  color: black;
+  font-weight: 700;
+  border: solid 2px white;
+  z-index: 1;
+  border-radius: 4px;
+}
+.button a:hover{
+  color: white;
+  border: solid 2px rgb(128, 126, 126);
+  background: rgb(128, 126, 126);
+}
+
+  
+  

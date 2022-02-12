@@ -1,0 +1,72 @@
+<app-header></app-header>
+<div class="register-photo" style="margin-top: 80px; position: relative;">
+    <div class="form-container">
+        <div class="image-holder"></div>
+        <form method="post" (ngSubmit)="signupUser()" #userSignup="ngForm">
+            <h2 class="text-center"><strong>Create</strong> an account.</h2>
+            <div class="form-group">
+                <input class="form-control" required="required" [(ngModel)]="user.username" type="text" name="First Name" placeholder="First Name">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" name="Last Name" placeholder="Last Name">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="email" #email="ngModel" name="email" placeholder="Email"  [(ngModel)]="user.email"  pattern="^[a-zA-Z0-9.%+]+@[a-zA-Z0-9.-]+\.[a-z]{2,4}" required>
+                 
+                <!-- Email Error Display Starts -->
+            <div *ngIf="email.invalid && (email.dirty || email.touched)"
+            class="smal">
+
+            <div *ngIf="email.errors.required">
+            Email is required.
+            </div>
+            <div *ngIf="email.errors.pattern">
+            Not a valid Format.
+            </div>
+           </div>
+           <!-- Email Error Display Ends -->
+            
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="password"  name="password" placeholder="Password" #password="ngModel" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{4,}$" [(ngModel)]="user.password" required minlength="8">
+                <!-- Password Error Display Starts -->
+            <div *ngIf="password.invalid && (password.dirty || password.touched)"
+            class="smal">
+
+            <div *ngIf="password.errors.required">
+            Password is required.
+            </div>
+            <div *ngIf="password.errors.pattern||password.errors.minlength">
+                Minimum 8 length, 1 uppercase, 1 lowercase, 1 number & 1 special character.
+                </div>
+
+            </div>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="number" placeholder="Your Mobile No." 
+                [(ngModel)]="user.mobileno" #mobileno="ngModel" name="mobileno"
+                required minlength="10" pattern="([0-9]{10})">
+                <div *ngIf="mobileno.invalid && (mobileno.dirty || mobileno.touched)"
+                class="smal">
+
+                <div *ngIf="mobileno.errors.required">
+                Mobile No. is required.
+                </div>
+                <div *ngIf="mobileno.errors.minlength||mobileno.errors.pattern">
+                    Mobile No. must be of 10 digits.
+                    </div>
+               </div>
+               <!-- Mobile No Error Display Ends -->
+
+            </div>
+            <div class="form-group">
+                <div class="form-check"><label class="form-check-label"><input class="form-check-input" type="checkbox">I agree to the license terms.</label></div>
+            </div>
+            <div class="form-group"><button class="btn btn-success btn-block" type="submit" [disabled]="userSignup.form.invalid">Sign Up</button></div>
+        </form>
+    </div>
+</div>
+<app-footer></app-footer>
+
+
+

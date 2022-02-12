@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="title">Education Details</div>
+  <br>
+  <div class="content">
+    <form action="#" (ngSubmit)="updatedata2()"  #updateform="ngForm">
+      
+      <div *ngFor="let i of http.Updatedata.education;let j=index">
+        <div class="user-details">
+          <div class="input-box">
+            <label   class="details" for="choose">Choose Degree</label>
+         <select  placeholder="Degree" name="degree{{j}}" [(ngModel)]="i.degree">
+           <option>Bachelor’s Degree</option>
+           <option>Master’s Degree</option>
+           <option>Doctoral Degree</option>
+           <option>Plus Two </option>
+           <option>Tenth</option>
+         </select>
+                    
+           </div>
+           <div class="input-box">
+            <span class="details">Specialisation</span>
+            <input required="required" type="text" name="mobile{{j}}" placeholder="Enter your Specialisation" [(ngModel)]="i.specialisation"required>
+          </div>
+
+          <div class="input-box">
+            <span class="details">Passout Year</span>
+            <input required="required" type="number" name="yaer{{j}}" placeholder="Enter your Passout Year" [(ngModel)]="i.year" required>
+          </div>
+
+          <div class="input-box">
+            <span class="details">Institution Name</span>
+            <input required="required" type="text"name="mobile" placeholder="Enter your Institution" [(ngModel)]="i.name"  name="name{{j}}" required>
+          </div>
+        </div>
+
+          <div class="buttoner">
+            <input type="button" value="Delete" (click)="del(i)"> 
+         </div>
+             
+                     
+          </div>  
+       
+          <div class="buttoned">
+            <input type="button" value="Add" (click)="insert()"> 
+           </div>
+       
+          <div class="button">
+            <input  [disabled]="updateform.form.invalid" type="submit" value="Next Page"> 
+            <a routerLink="/user/updateform1"><input type="button" value="Back Page"></a>
+          </div>
+        
+        </form>
+      </div>
+    </div>
+  

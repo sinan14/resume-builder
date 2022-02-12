@@ -1,0 +1,50 @@
+<form  (ngSubmit)="resumedata5()">
+	<div>
+		<h2 class="style2">Upload Image & Video </h2>
+			  </div>
+
+<div class="row">
+	<div class="col">
+<div class="frame">
+	<div class="center">
+		<div class="title">
+			<h1>Drop Image to upload</h1>
+		</div>
+
+		<div class="dropzone">
+			<img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon" />
+			<input id="photo" name="image" class="input-file" type="file" multiple (change)="selectImage($event)" />
+		</div>
+
+		<button type="submit" class="btn" name="submit" (click)=upload()>Upload Photo</button>
+
+	</div>
+	
+  
+</div>
+</div>
+
+<div class="col">
+<div class="framed">
+	<div class="centers">
+		<div class="title">
+			<h1>Video Url to upload</h1>
+		</div>
+
+		<div class="dropzone">
+			<img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon" />
+			<input placeholder="Video Url" id="photo" name="video" class="video" type="text" [(ngModel)]="video.Url"/>
+		</div>
+
+		<button type="button" class="btn" (click)="uploadvideo()"  >Upload Url</button>
+
+	</div>
+  
+</div>
+</div>
+</div>
+
+</form>
+
+
+
