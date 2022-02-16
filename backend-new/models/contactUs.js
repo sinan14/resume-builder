@@ -1,14 +1,23 @@
-const mongoose=require("mongoose");
-mongoose.connect('mongodb+srv://userone:userone@ictakfiles.cpy6i.mongodb.net/LIBRARY?retryWrites=true&w=majority');
-const Schema=mongoose.Schema;
+const mongoose = require("mongoose");
 
-const ContactSchema=new Schema({
-    fname:String,
-    lname:String,
-    email: String,
-    comment:String
-    
-})
-var Contactdata=mongoose.model("contactdata",ContactSchema);
+const contactUsSchema = new mongoose.Schema({
+  fname: {
+    type: String,
+    required: true,
+  },
 
-module.exports=Contactdata;
+  lname: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  comment: {
+    type: String,
+    required: true,
+  },
+});
+
+module.exports = mongoose.model("ContactUs", contactUsSchema);
