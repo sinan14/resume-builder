@@ -67,6 +67,9 @@
 ![image](https://user-images.githubusercontent.com/81897917/156112667-06d0dd66-3136-467b-9de4-295f88b63194.png)
 
 
+16) Contact us
+
+![image](https://user-images.githubusercontent.com/81897917/156113036-aafb79dc-1fd2-4b7e-a50a-da1247c4cd43.png)
 
 
 
