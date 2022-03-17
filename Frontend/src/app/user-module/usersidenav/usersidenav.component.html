@@ -1,0 +1,148 @@
+<mat-nav-list>
+  <div class="proname py-4">
+    <h4 class="title">E ResumeBuilderApp</h4>
+  </div>
+
+  <mat-divider></mat-divider>
+  <h2 matSubheader class="title mt-2">APPLICATIONS</h2>
+  <a mat-list-item routerLink="userhome" routerLinkActive="list-item-active"
+    ><mat-icon>home</mat-icon>User Home</a
+  >
+  <a
+    [class.dis]="!check.LoggedIn()"
+    [disabled]="!check.LoggedIn()"
+    mat-list-item
+    routerLink="select-template"
+    routerLinkActive="list-item-active"
+    ><mat-icon>dashboard</mat-icon>Select Template</a
+  >
+  <a
+    [class.dis]="check.LoggedIn()"
+    [disabled]="check.LoggedIn()"
+    mat-list-item
+    routerLink="form1"
+    routerLinkActive="list-item-active"
+    ><mat-icon>edit</mat-icon>Create Resume</a
+  >
+  <a
+    [class.dis]="!check.LoggedIn()"
+    [disabled]="!check.LoggedIn()"
+    mat-list-item
+    routerLink="updateform1"
+    routerLinkActive="list-item-active"
+    ><mat-icon>update</mat-icon>Update Resume</a
+  >
+  <a
+    [class.dis]="!check.LoggedIn()"
+    [disabled]="!check.LoggedIn()"
+    mat-list-item
+    routerLink="form5"
+    routerLinkActive="list-item-active"
+    ><mat-icon>photo</mat-icon>Update Photo or Video</a
+  >
+  <a
+    [class.dis]="!check.LoggedIn()"
+    [disabled]="!check.LoggedIn()"
+    mat-list-item
+    routerLink="/manage-users"
+    routerLinkActive="list-item-active"
+    (click)="delete()"
+    ><mat-icon>delete</mat-icon>Delete Resume</a
+  >
+  <a
+    [class.dis]="check.LoggedIn()"
+    mat-list-item
+    routerLink="/add-blog"
+    routerLinkActive="list-item-active"
+    (click)="open(content)"
+    ><mat-icon>visibility</mat-icon>View Saved Resumes</a
+  >
+  <a
+    mat-list-item
+    routerLink="/add-blog"
+    routerLinkActive="list-item-active"
+    (click)="open(content2)"
+    ><mat-icon>star</mat-icon>Rate Us</a
+  >
+</mat-nav-list>
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header card-header" style="border-radius: 10px">
+    <h4 class="modal-title">Backup Your Resume..!!</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="d('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="backup()">
+      <div class="form-group">
+        <label for="choose">Select Name</label>
+        <select
+          class="option"
+          placeholder="Degree"
+          name="draft"
+          [(ngModel)]="draftID"
+        >
+          <option *ngFor="let i of draft" value="{{ i.draftID }}">
+            {{ i.name }}
+          </option>
+        </select>
+      </div>
+
+      <button
+        style="float: right"
+        type="submit"
+        (click)="d('Cross click')"
+        class="btn btn-outline-success"
+      >
+        Backup
+      </button>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #content2 let-c="close" let-d="dismiss">
+  <div class="modal-header card-header" style="border-radius: 10px">
+    <h4 class="modal-title">Rate Us !!</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="d('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-sm-12">
+        <ul
+          class="list-inline rating-list"
+          *ngFor="let star of stars"
+          style="display: inline-block"
+        >
+          <li
+            (click)="countStar(star)"
+            [ngClass]="{ selected: star <= selectedValue }"
+          >
+            <i class="fa fa-star"></i>
+          </li>
+        </ul>
+        <h4 id="mess"></h4>
+        <button
+          style="float: right"
+          type="button"
+          class="btn btn-outline-danger"
+          (click)="d('Cross click')"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>

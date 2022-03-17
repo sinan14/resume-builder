@@ -1,0 +1,105 @@
+<div class="container">
+  <div class="title">Skill Set/Language</div>
+  <br />
+  <div class="content">
+    <form action="#" (ngSubmit)="resumedata4()" #createform="ngForm">
+      <div class="row">
+        <div class="col-lg">
+          <div
+            *ngFor="let skill of _formService.Resumedata.skills; let j = index"
+          >
+            <div class="user-details">
+              <div class="input-box">
+                <span class="details">Skills</span>
+                <input
+                  required="required"
+                  type="text"
+                  placeholder="Enter your skill"
+                  name="skill{{ j }}"
+                  [(ngModel)]="skill.skill"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="buttoner">
+              <input
+                type="button"
+                value="Delete"
+                (click)="deleteSkill(skill)"
+              />
+            </div>
+          </div>
+
+          <div class="buttoned">
+            <input type="button" value="Add" (click)="insertSkill()" />
+          </div>
+        </div>
+        <div class="col-lg">
+          <div class="ss">
+            <div
+              *ngFor="
+                let language of _formService.Resumedata.languages;
+                let j = index
+              "
+            >
+              <div class="user-details">
+                <div class="input-box">
+                  <span class="details"> Language</span>
+                  <input
+                    required="required"
+                    type="text"
+                    placeholder="Enter your Language"
+                    name="languages{{ j }}"
+                    [(ngModel)]="language.language"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="buttoner">
+                <input
+                  type="button"
+                  value="Delete"
+                  (click)="deleteLanguage(language)"
+                />
+              </div>
+            </div>
+
+            <div class="buttoned">
+              <input type="button" value="Add" (click)="insertLanguage()" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row inp">
+        <div class="title">Other Details</div>
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">Achievements</span>
+            <input
+              required="required"
+              type="text"
+              name="achievements"
+              placeholder="Enter your Achievements"
+              [(ngModel)]="_formService.Resumedata.achievements"
+              required
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="button">
+        <input
+          [disabled]="createform.form.invalid"
+          type="submit"
+          value="Create"
+        />
+        <a routerLink="/user/form3"
+          ><input type="button" value="Back Page"
+        /></a>
+      </div>
+    </form>
+  </div>
+</div>

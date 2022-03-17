@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="title">Work Experience</div>
+  <br />
+  <div class="content">
+    <form action="#" (ngSubmit)="resumedata3()">
+      <div *ngFor="let career of _formService.Resumedata.job; let j = index">
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">Job Name</span>
+            <input
+              type="text"
+              placeholder="Enter your job name"
+              name="job{{ j }}"
+              [(ngModel)]="career.jobname"
+              required
+            />
+          </div>
+
+          <div class="input-box">
+            <span class="details">Experience in years</span>
+            <input
+              type="number"
+              placeholder="Enter your Experience Year"
+              name="jobyear{{ j }}"
+              [(ngModel)]="career.jobyear"
+              required
+            />
+          </div>
+
+          <div class="input-box">
+            <span class="details">Organisation Name</span>
+            <input
+              type="text"
+              placeholder="Enter your Institution"
+              name="name{{ j }}"
+              [(ngModel)]="career.companyname"
+              required
+            />
+          </div>
+
+          <div class="input-box">
+            <span class="details">Description</span>
+            <textarea
+              placeholder="Describe"
+              name="Description{{ j }}"
+              [(ngModel)]="career.jobdes"
+              required
+            ></textarea>
+          </div>
+        </div>
+
+        <div class="buttoner">
+          <input type="button" value="Delete" (click)="deleteJob(career)" />
+        </div>
+      </div>
+
+      <div class="buttoned">
+        <input type="button" value="Add" (click)="insertJob()" />
+      </div>
+
+      <div class="button">
+        <input type="submit" value="Next Page" />
+        <a routerLink="/user/form2"
+          ><input type="button" value="Back Page"
+        /></a>
+      </div>
+    </form>
+  </div>
+</div>

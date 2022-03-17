@@ -1,31 +1,57 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ContactusService } from '../contactus.service';
+import Swal from 'sweetalert2';
+import { ContactusService } from '../services/contactus.service';
 
 @Component({
   selector: 'app-contactus',
   templateUrl: './contactus.component.html',
-  styleUrls: ['./contactus.component.css']
+  styleUrls: ['./contactus.component.css'],
 })
-export class ContactusComponent implements OnInit {
-  contact={
-    fname:"",
-    lname:"",
-    email:"",
-    comment:""
+export class ContactusComponent {
+  form: FormGroup = this._fb.group({
+    fname: [null, [Validators.required, Validators.minLength(3)]],
+    lname: [null, [Validators.required, Validators.minLength(3)]],
+    email: [null, [Validators.required]],
+    comment: [null, [Validators.required, Validators.minLength(10)]],
+  });
+
+  constructor(
+    public _contactService: ContactusService,
+    private router: Router,
+    private _fb: FormBuilder
+  ) {}
+  private hasError: boolean = false;
+
+  isvalid(controlName: string) {
+    return (
+      (this.form.get(controlName)!.invalid &&
+        this.form.get(controlName)!.touched) ||
+      (this.hasError && this.form.get(controlName).invalid)
+    );
   }
 
-  constructor(public http:ContactusService,private router:Router) { }
-
-  ngOnInit(): void {
+  contact() {
+    if (this.form.invalid) {
+      this.hasError = true;
+      return;
+    }
+    this._contactService.contactus(this.form.value).subscribe((res) => {
+      console.log(res);
+      if (res.status === 'success') {
+        Swal.fire({
+          icon: 'success',
+          showConfirmButton: false,
+          title: 'Thank you for your feedback',
+        });
+      } else {
+        Swal.fire({
+          icon: 'info',
+          title: 'something went wrong',
+        });
+      }
+      this.router.navigate(['']);
+    });
   }
-  contacted(){
-    this.http.contactus(this.contact)
-    .subscribe(function(){
-      console.log("contactsend");
-    })
-    this.router.navigate(['']);
-  }
-  
-
 }

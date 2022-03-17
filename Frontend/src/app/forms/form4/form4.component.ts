@@ -1,0 +1,46 @@
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormService } from '../../services/form.service';
+
+@Component({
+  selector: 'app-form4',
+  templateUrl: './form4.component.html',
+  styleUrls: ['./form4.component.css'],
+})
+export class Form4Component {
+  ID2 = localStorage.getItem('UserId');
+  constructor(public _formService: FormService, private _router: Router) {}
+
+  resumedata4() {
+    this._formService.postResume(this._formService.Resumedata).subscribe(
+      (res: any) => {
+        if (res.status === 'success') {
+          this._formService.resumeId = JSON.stringify(res.data._id);
+          this._router.navigate(['user/form5']);
+        } else {
+        }
+      },
+      (error) => {}
+    );
+  }
+  insertSkill() {
+    this._formService.Resumedata.skills.push({ skill: '' });
+  }
+
+  insertLanguage() {
+    this._formService.Resumedata.languages.push({ language: '' });
+  }
+  deleteSkill(skill) {
+    const index: number = this._formService.Resumedata.skills.indexOf(skill);
+    if (index !== -1) {
+      this._formService.Resumedata.skills.splice(index, 1);
+    }
+  }
+  deleteLanguage(language) {
+    const index: number =
+      this._formService.Resumedata.languages.indexOf(language);
+    if (index !== -1) {
+      this._formService.Resumedata.languages.splice(index, 1);
+    }
+  }
+}

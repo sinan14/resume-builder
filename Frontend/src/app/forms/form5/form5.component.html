@@ -1,0 +1,84 @@
+<form>
+  <div>
+    <h2 class="style2">Upload Image & Video</h2>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="frame">
+        <div class="center">
+          <div class="title">
+            <h1>Drop Image to upload</h1>
+          </div>
+
+          <div class="dropzone">
+            <img
+              src="http://100dayscss.com/codepen/upload.svg"
+              class="upload-icon"
+            />
+            <form [formGroup]="imageForm">
+              <input
+                id="photo"
+                class="input-file"
+                type="file"
+                (change)="selectImage($event)"
+              />
+              <small
+                class="form-text small-block"
+                *ngIf="invalidPhoto('photo')"
+              >
+                upload image
+              </small>
+            </form>
+          </div>
+
+          <button
+            type="submit"
+            class="btn"
+            name="submit"
+            (click)="uploadImage()"
+          >
+            Upload Photo
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="framed">
+        <div class="centers">
+          <div class="title">
+            <h1>Video Url to upload</h1>
+          </div>
+
+          <div class="dropzone">
+            <img
+              src="http://100dayscss.com/codepen/upload.svg"
+              class="upload-icon"
+            />
+            <form [formGroup]="videoForm">
+              <input
+                placeholder="Video Url"
+                id="photo"
+                class="video"
+                name="video"
+                formControlName="video"
+                type="text"
+              />
+              <small
+                class="form-text small-block"
+                *ngIf="invalidVideo('video')"
+              >
+                upload image
+              </small>
+            </form>
+          </div>
+
+          <button type="button" class="btn" (click)="uploadvideo()">
+            Upload Url
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

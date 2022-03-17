@@ -1,33 +1,30 @@
-.containers{
+.containers {
   width: 90%;
   margin: 0 auto;
 }
 
-.policy{
-  background-image: url(../assets/background.jpg);
+.policy {
+  background-image: url(../../assets/images/background.jpg);
   background-size: cover;
   background-origin: center;
   background-repeat: no-repeat;
   height: 380px;
   padding: 60px 0;
-
 }
 
-.round{
+.round {
   padding: 23px;
   border-radius: 50%;
   width: 80px;
   height: 80px;
   font-size: 34px;
-  background: rgba(255, 255, 255, .2);
-  transition: all .3s ease;
+  background: rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
   margin: 0 auto;
   position: relative;
-
-
 }
 
-.round-icon{
+.round-icon {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -35,38 +32,36 @@
   color: white;
 }
 
-.policy-card h2{
-
-  transition: all .3s ease;
+.policy-card h2 {
+  transition: all 0.3s ease;
   font-weight: 700;
   font-size: 16px;
   color: #fff;
   text-transform: uppercase;
   margin: 12px 0 5px;
-  
 }
 
-.policy-card p{
+.policy-card p {
   color: #dbdbdb;
   font-style: italic;
 }
 
-.policy-card:hover .round{
+.policy-card:hover .round {
   background: #ff4000;
   cursor: pointer;
 }
 
-.policy-card:hover .h2{
+.policy-card:hover .h2 {
   color: #ff4000;
   cursor: pointer;
 }
 
-.policy-product{
+.policy-product {
   padding: 60px 0;
   background: #eee;
 }
 
-.policy-p-card{
+.policy-p-card {
   background: #fff;
   padding: 20px;
   border-radius: 5px;
@@ -75,7 +70,7 @@
   top: -170px;
 }
 
-.date{
+.date {
   position: absolute;
   top: 0;
   left: 30px;
@@ -86,7 +81,7 @@
   border-radius: 0 0 4px 4px;
 }
 
-.date h3{
+.date h3 {
   font-size: 28px;
   font-weight: 700;
   color: #fff;
@@ -95,54 +90,52 @@
   padding: 0;
 }
 
-.date h4{
+.date h4 {
   color: #eee;
   margin: 0;
   padding: 0;
   font-size: 14px;
 }
 
-.policy-image{
-  
+.policy-image {
   width: 100%;
   height: 300px;
   overflow: hidden;
 }
 
-.policy-image img{
+.policy-image img {
   width: 100%;
   height: 100%;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 
-.policy-image img:hover{
+.policy-image img:hover {
   transform: scale(1.2);
 }
 
-.policy-p-card h2{
+.policy-p-card h2 {
   text-transform: capitalize;
   line-height: 24px;
   font-size: 18px;
   font-weight: 700;
   margin: 18px 0 10px;
   cursor: pointer;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 
-.policy-p-card h2:hover{
+.policy-p-card h2:hover {
   color: #ff4000;
 }
 
-.policy-p-card p{
-  
+.policy-p-card p {
   color: #777;
   line-height: 21px;
   font-size: 14px;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
   font-weight: 500;
 }
 
-.read-more{
+.read-more {
   color: #fff;
   font-size: 14px;
   font-weight: 700;
@@ -151,30 +144,30 @@
   background: #333;
   text-align: center;
   text-decoration: none;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 
-.read-more i{
+.read-more i {
   margin-left: 4px;
 }
 
-.read-more:hover{
+.read-more:hover {
   background: #ff4000;
   color: #fff;
 }
 
-.read-more:hover i{
+.read-more:hover i {
   margin-left: 6px;
 }
 
 .button {
   position: absolute;
- 
+
   left: 13.5%;
   top: 45%;
   text-align: center;
   opacity: 1;
-  transition: opacity .35s ease;
+  transition: opacity 0.35s ease;
 }
 
 .button a {
@@ -187,11 +180,8 @@
   z-index: 1;
   border-radius: 4px;
 }
-.button a:hover{
+.button a:hover {
   color: white;
   border: solid 2px rgb(128, 126, 126);
   background: rgb(128, 126, 126);
 }
-
-  
-  
