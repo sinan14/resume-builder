@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormService } from '../services/form.service';
-import { TemplateService } from '../services/template.service';
-import { UserService } from '../auth/services/user.service';
+import { FormService } from '../../services/form.service';
+import { UserService } from '../../auth/services/user.service';
 
 @Component({
   selector: 'app-selection',
@@ -10,24 +9,20 @@ import { UserService } from '../auth/services/user.service';
   styleUrls: ['./selection.component.css'],
 })
 export class SelectionComponent implements OnInit {
-  ID2 = localStorage.getItem('UserId');
-  draft: any = '';
-
   constructor(
     public _formService: FormService,
     public router: Router,
-    public _userService: UserService,
-    public _templateService: TemplateService
+    public _userService: UserService
   ) {}
 
   ngOnInit(): void {
-    // this._userService.check(this.ID2);
-    // this._userService.LoggedIn();
-    this._formService
-      .getResumeById(this._formService.resumeId)
-      .subscribe((res: any) => {
-        this._formService.Updatedata = JSON.parse(JSON.stringify(res.data));
-      });
+    const resumeId = JSON.parse(localStorage.getItem('resumeId'));
+    console.log(localStorage.getItem('resumeId'));
+    console.log(resumeId);
+
+    this._formService.getResumeById(resumeId).subscribe((res: any) => {
+      this._formService.Updatedata = JSON.parse(JSON.stringify(res.data));
+    });
   }
   temp1() {
     this.router.navigate([
@@ -45,7 +40,7 @@ export class SelectionComponent implements OnInit {
     ]);
   }
   generatelink(templateNo) {
-    this._templateService
+    this._formService
       .getlink({ templateNo, cvId: this._formService.Updatedata._id })
       .subscribe(
         (data) => {},

@@ -28,23 +28,24 @@ export class Form5Component {
     });
   }
   uploadImage() {
+    const resumeId = JSON.parse(localStorage.getItem('resumeId'));
     const fd = new FormData();
     fd.append('photo', this.imageForm.get('photo').value);
-    this._formService
-      .updateResume(fd, this._formService.resumeId)
-      .subscribe((res: any) => {
-        if (res.status === 'success') {
-          Swal.fire({
-            icon: 'success',
-            title: 'Photo uploaded',
-          });
-        }
-      });
+    this._formService.updateResume(fd, resumeId).subscribe((res: any) => {
+      if (res.status === 'success') {
+        Swal.fire({
+          icon: 'success',
+          title: 'Photo uploaded',
+        });
+      }
+    });
   }
 
   uploadvideo() {
+    const resumeId = JSON.parse(localStorage.getItem('resumeId'));
+
     this._formService
-      .updateResume(this.videoForm.value, this._formService.resumeId)
+      .updateResume(this.videoForm.value, resumeId)
       .subscribe((res: any) => {
         if (res.status === 'success') {
           Swal.fire({

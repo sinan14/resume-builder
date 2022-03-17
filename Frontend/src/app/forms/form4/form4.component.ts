@@ -15,7 +15,8 @@ export class Form4Component {
     this._formService.postResume(this._formService.Resumedata).subscribe(
       (res: any) => {
         if (res.status === 'success') {
-          this._formService.resumeId = JSON.stringify(res.data._id);
+          const resumeId = JSON.stringify(res.data._id);
+          localStorage.setItem('resumeId', resumeId);
           this._router.navigate(['user/form5']);
         } else {
         }

@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment.prod';
 export class FormService {
   private _api: string = environment.baseUrl;
   ID2 = localStorage.getItem('UserId');
-  public resumeId: string = '';
+  public resumeId: any = '';
   Resumedata = {
     ID: localStorage.getItem('UserId'),
     name: '',
@@ -52,12 +52,12 @@ export class FormService {
     const endPoint = `${this._api}/resume`;
     return this._http.post(endPoint, form);
   }
-  updateResume(form: any, resueme_id: string) {
-    const endPoint = `${this._api}/resume/${JSON.parse(resueme_id)}`;
+  updateResume(form: any, resueme_id: any) {
+    const endPoint = `${this._api}/resume/${resueme_id}`;
     return this._http.patch(endPoint, form);
   }
   getResumeById(resueme_id) {
-    const endPoint = `${this._api}/resume/${JSON.parse(resueme_id)}`;
+    const endPoint = `${this._api}/resume/${resueme_id}`;
     return this._http.get(endPoint);
   }
 
@@ -79,5 +79,14 @@ export class FormService {
     return this._http.put(endPoint, data).subscribe((data) => {
       console.log(data);
     });
+  }
+  getlink(data: any) {
+    const endPoint = `${this._api}/user/getlink`;
+    return this._http.post(endPoint, data);
+  }
+  contactus(contacts: any) {
+    const endPoint = `${this._api}/contact`;
+
+    return this._http.post<any>(endPoint, contacts);
   }
 }

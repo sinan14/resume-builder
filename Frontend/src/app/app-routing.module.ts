@@ -5,7 +5,7 @@ import { AdminHomeComponent } from './Admin-Module/admin-home/admin-home.compone
 import { AdminComponent } from './Admin-Module/admin/admin.component';
 import { AuthGuard } from './auth/auth.guard';
 import { BlogComponent } from './blog/blog.component';
-import { BlogcreationComponent } from './blogcreation/blogcreation.component';
+import { BlogcreationComponent } from './Admin-Module/blogcreation/blogcreation.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { Form1Component } from './forms/form1/form1.component';
 import { Form2Component } from './forms/form2/form2.component';
@@ -16,7 +16,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './auth/login/login.component';
 import { MailboxComponent } from './Admin-Module/mailbox/mailbox.component';
 import { ResumemangerComponent } from './resumemanger/resumemanger.component';
-import { SelectionComponent } from './selection/selection.component';
+import { SelectionComponent } from './user-module/selection/selection.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { Template1Component } from './templates/template1/template1.component';
 import { Template2Component } from './templates/template2/template2.component';

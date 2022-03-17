@@ -38,9 +38,12 @@ export class Template1Component implements OnInit {
   }
 
   ngOnInit(): void {
-    this._formService.getResumeById(this._formService.resumeId).subscribe(
+    const resumeId = JSON.parse(localStorage.getItem('resumeId'));
+
+    this._formService.getResumeById(resumeId).subscribe(
       (res: any) => {
         this.Resumedata = JSON.parse(JSON.stringify(res.data));
+        console.log(this.Resumedata);
       },
       (error: any) => {}
     );

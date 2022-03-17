@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { ContactusService } from '../services/contactus.service';
+import { FormService } from '../services/form.service';
 
 @Component({
   selector: 'app-contactus',
@@ -18,7 +18,7 @@ export class ContactusComponent {
   });
 
   constructor(
-    public _contactService: ContactusService,
+    public _contactService: FormService,
     private router: Router,
     private _fb: FormBuilder
   ) {}
