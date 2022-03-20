@@ -11,15 +11,26 @@ import Swal from 'sweetalert2';
 })
 export class UserComponent implements OnInit {
   sideBarOpen = true;
-  ID2 = localStorage.getItem('UserId');
+  // ID2 = localStorage.getItem('UserId');
 
   constructor(
     private router: Router,
-    public form: FormService,
+    public _formService: FormService,
     public check: UserService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const resumeId = JSON.parse(localStorage.getItem('resumeId'));
+    console.log(localStorage.getItem('resumeId'));
+    console.log(resumeId);
+
+    this._formService.getResumeById(resumeId).subscribe((res: any) => {
+      if (res.status === 'success') {
+        console.log(res);
+        this._formService.Updatedata = JSON.parse(JSON.stringify(res.data));
+      }
+    });
+  }
   sideBarToggler() {
     this.sideBarOpen = !this.sideBarOpen;
   }
@@ -39,7 +50,7 @@ export class UserComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500,
         });
-        // this.form.draft(this.ID2).subscribe((res: any) => {
+        // this._formService.draft(this.ID2).subscribe((res: any) => {
         //   this.check.check(this.ID2);
         //   this.check.LoggedIn();
         //   setTimeout(() => {
@@ -54,9 +65,7 @@ export class UserComponent implements OnInit {
           showConfirmButton: false,
           timer: 2000,
         });
-        this.form.deletedata(this.ID2).subscribe((res: any) => {
-          this.check.check(this.ID2);
-          this.check.LoggedIn();
+        this._formService.deleteResume('resume_id').subscribe((res: any) => {
           setTimeout(() => {
             window.location.reload();
           }, 2001);

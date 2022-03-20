@@ -1,5 +1,4 @@
 import { Component, destroyPlatform, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { FormService } from '../../services/form.service';
 import { UserService } from '../../auth/services/user.service';
 import Swal from 'sweetalert2';
@@ -13,20 +12,15 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class UsersidenavComponent implements OnInit {
   ID2 = localStorage.getItem('UserId');
-  draft: any = '';
-  draftID: any = '';
+  drafts: any = '';
+  draftId: any = '';
 
   stars: number[] = [1, 2, 3, 4, 5];
   selectedValue: number;
-  starvalue = {
-    value: '',
-    _id: localStorage.getItem('UserId'),
-  };
 
   constructor(
-    private router: Router,
-    public form: FormService,
-    public check: UserService,
+    public _formService: FormService,
+    public _userService: UserService,
     config: NgbModalConfig,
     private modalService: NgbModal
   ) {
@@ -34,11 +28,29 @@ export class UsersidenavComponent implements OnInit {
     config.keyboard = false;
   }
 
-  ngOnInit(): void {
-    let userdata = localStorage.getItem('UserId');
-    // this.form.loaddraftdata(userdata).subscribe((data) => {
-    //   this.draft = JSON.parse(JSON.stringify(data));
-    // });
+  ngOnInit(): void {}
+  getActiveResume() {
+    this._formService.getActiveResume();
+  }
+  makeInactive() {
+    this._formService.updateResume({ status: false }, 123).subscribe(
+      (res: any) => {
+        console.log(res);
+      },
+      (error: any) => {}
+    );
+  }
+  getInactiveResumes() {
+    this._formService.getInactiveResume().subscribe(
+      (res: any) => {
+        console.log(res);
+
+        if (res.status === 'success') {
+          this.drafts = JSON.parse(res.data);
+        }
+      },
+      (error: any) => {}
+    );
   }
 
   open(content: any) {
@@ -90,43 +102,28 @@ export class UsersidenavComponent implements OnInit {
       denyButtonText: `Delete it Permanently!`,
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire({
-          icon: 'success',
-          title: 'Your Resumedata drafted :)',
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        // this.form.draft(this.ID2).subscribe((res: any) => {
-        //   // this.check.check(this.ID2);
-        //   // this.check.LoggedIn();
-        //   setTimeout(() => {
-        //     window.location.reload();
-        //   }, 1501);
-        //   this.router.navigate(['user']);
-        // });
+        this.makeInactive();
       } else if (result.isDenied) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Your Resume deleted!!',
-          showConfirmButton: false,
-          timer: 2000,
-        });
-        this.form.deletedata(this.ID2).subscribe((res: any) => {
-          // this.check.check(this.ID2);
-          // this.check.LoggedIn();
-          setTimeout(() => {
-            window.location.reload();
-          }, 2001);
-          this.router.navigate(['user']);
-        });
+        this.deleteResumePermenently();
       }
     });
   }
-  countStar(star) {
+  rateResumeBuilder(star) {
     this.selectedValue = star;
-    this.starvalue.value = star;
-    console.log('Value of star', star);
-    this.check.rate(this.starvalue);
-    document.getElementById('mess').innerHTML = 'Thank you for Rating us..';
+    this._userService.rateTheApp({ star }).subscribe(
+      (res: any) => {
+        if (res.status === 'success') {
+          document.getElementById('mess').innerHTML =
+            'Thank you for Rating us..';
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Something went wrong please try again',
+          });
+        }
+      },
+      (error: any) => {}
+    );
   }
+  deleteResumePermenently() {}
 }

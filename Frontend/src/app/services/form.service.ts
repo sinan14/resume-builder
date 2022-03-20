@@ -10,7 +10,6 @@ export class FormService {
   ID2 = localStorage.getItem('UserId');
   public resumeId: any = '';
   Resumedata = {
-    ID: localStorage.getItem('UserId'),
     name: '',
     email: '',
     phonenumber: '',
@@ -29,7 +28,6 @@ export class FormService {
 
   Updatedata = {
     _id: '',
-    ID: localStorage.getItem('UserId'),
     name: '',
     email: '',
     phonenumber: '',
@@ -56,6 +54,10 @@ export class FormService {
     const endPoint = `${this._api}/resume/${resueme_id}`;
     return this._http.patch(endPoint, form);
   }
+  // updateResume(form: any, id) {
+  //   const endPoint = `${this._api}/resume/${id}`;
+  //   return this._http.patch(endPoint, form);
+  // }
   getResumeById(resueme_id) {
     const endPoint = `${this._api}/resume/${resueme_id}`;
     return this._http.get(endPoint);
@@ -69,8 +71,8 @@ export class FormService {
     });
   }
 
-  deletedata(id: any) {
-    const endPoint = `${this._api}/deletedata/${id}`;
+  deleteResume(id: any) {
+    const endPoint = `${this._api}/resume/${id}`;
     return this._http.delete(endPoint);
   }
 
@@ -86,7 +88,23 @@ export class FormService {
   }
   contactus(contacts: any) {
     const endPoint = `${this._api}/contact`;
-
     return this._http.post<any>(endPoint, contacts);
+  }
+  getActiveResume() {
+    const user = JSON.parse(localStorage.getItem('User'));
+    const endPoint = `${this._api}/resume/${user._id}/get-user-resumes?active=false`;
+    return this._http.get(endPoint).subscribe(
+      (res: any) => {
+        console.log(res);
+        if (res.status === 'success') {
+          this.Updatedata = res.data[0];
+        }
+      },
+      (error: any) => {}
+    );
+  }
+  getInactiveResume() {
+    const endPoint = `${this._api}/resume?active=false`;
+    return this._http.get(endPoint);
   }
 }

@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 
 const resumeSchema = new mongoose.Schema(
   {
+    user: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'User',
+      required: [true, 'resume must be made by a user']
+    },
     name: {
       type: String,
       required: [true, 'please tell us your name']

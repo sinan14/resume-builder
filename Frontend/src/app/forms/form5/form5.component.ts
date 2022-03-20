@@ -31,22 +31,24 @@ export class Form5Component {
     const resumeId = JSON.parse(localStorage.getItem('resumeId'));
     const fd = new FormData();
     fd.append('photo', this.imageForm.get('photo').value);
-    this._formService.updateResume(fd, resumeId).subscribe((res: any) => {
-      if (res.status === 'success') {
-        Swal.fire({
-          icon: 'success',
-          title: 'Photo uploaded',
-        });
-      }
-    });
+    this._formService.updateResume(fd, resumeId).subscribe(
+      (res: any) => {
+        if (res.status === 'success') {
+          Swal.fire({
+            icon: 'success',
+            title: 'Photo uploaded',
+          });
+        }
+      },
+      (error: any) => {}
+    );
   }
 
   uploadvideo() {
     const resumeId = JSON.parse(localStorage.getItem('resumeId'));
 
-    this._formService
-      .updateResume(this.videoForm.value, resumeId)
-      .subscribe((res: any) => {
+    this._formService.updateResume(this.videoForm.value, resumeId).subscribe(
+      (res: any) => {
         if (res.status === 'success') {
           Swal.fire({
             icon: 'success',
@@ -55,7 +57,9 @@ export class Form5Component {
             this.router.navigate(['user/select-template']);
           });
         }
-      });
+      },
+      (error: any) => {}
+    );
   }
   invalidPhoto(controlName: string) {
     return (

@@ -15,15 +15,7 @@ export class SelectionComponent implements OnInit {
     public _userService: UserService
   ) {}
 
-  ngOnInit(): void {
-    const resumeId = JSON.parse(localStorage.getItem('resumeId'));
-    console.log(localStorage.getItem('resumeId'));
-    console.log(resumeId);
-
-    this._formService.getResumeById(resumeId).subscribe((res: any) => {
-      this._formService.Updatedata = JSON.parse(JSON.stringify(res.data));
-    });
-  }
+  ngOnInit(): void {}
   temp1() {
     this.router.navigate([
       `user/template1/${this._formService.Updatedata._id}`,

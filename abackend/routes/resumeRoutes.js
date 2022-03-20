@@ -9,6 +9,7 @@ router
   .get(resumeController.getResumes)
   .post(multerController.uploadPhoto, resumeController.createResume);
 
+router.get('/:userId/get-user-resumes', resumeController.getResumes);
 router
   .route('/:id')
   .get(resumeController.getResumeById)

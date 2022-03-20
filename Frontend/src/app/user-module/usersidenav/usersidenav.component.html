@@ -9,61 +9,44 @@
     ><mat-icon>home</mat-icon>User Home</a
   >
   <a
-    [class.dis]="!check.LoggedIn()"
-    [disabled]="!check.LoggedIn()"
+    [class.dis]="!_userService.LoggedIn()"
+    [disabled]="!_userService.LoggedIn()"
     mat-list-item
     routerLink="select-template"
     routerLinkActive="list-item-active"
     ><mat-icon>dashboard</mat-icon>Select Template</a
   >
   <a
-    [class.dis]="check.LoggedIn()"
-    [disabled]="check.LoggedIn()"
+    [class.dis]="_userService.LoggedIn()"
+    [disabled]="_userService.LoggedIn()"
     mat-list-item
     routerLink="form1"
     routerLinkActive="list-item-active"
     ><mat-icon>edit</mat-icon>Create Resume</a
   >
   <a
-    [class.dis]="!check.LoggedIn()"
-    [disabled]="!check.LoggedIn()"
+    [class.dis]="!_userService.LoggedIn()"
+    [disabled]="!_userService.LoggedIn()"
     mat-list-item
     routerLink="updateform1"
     routerLinkActive="list-item-active"
     ><mat-icon>update</mat-icon>Update Resume</a
   >
   <a
-    [class.dis]="!check.LoggedIn()"
-    [disabled]="!check.LoggedIn()"
+    [class.dis]="!_userService.LoggedIn()"
+    [disabled]="!_userService.LoggedIn()"
     mat-list-item
     routerLink="form5"
     routerLinkActive="list-item-active"
     ><mat-icon>photo</mat-icon>Update Photo or Video</a
   >
-  <a
-    [class.dis]="!check.LoggedIn()"
-    [disabled]="!check.LoggedIn()"
-    mat-list-item
-    routerLink="/manage-users"
-    routerLinkActive="list-item-active"
-    (click)="delete()"
+  <a mat-list-item (click)="delete()"
     ><mat-icon>delete</mat-icon>Delete Resume</a
   >
-  <a
-    [class.dis]="check.LoggedIn()"
-    mat-list-item
-    routerLink="/add-blog"
-    routerLinkActive="list-item-active"
-    (click)="open(content)"
+  <a mat-list-item (click)="open(content)"
     ><mat-icon>visibility</mat-icon>View Saved Resumes</a
   >
-  <a
-    mat-list-item
-    routerLink="/add-blog"
-    routerLinkActive="list-item-active"
-    (click)="open(content2)"
-    ><mat-icon>star</mat-icon>Rate Us</a
-  >
+  <a mat-list-item (click)="open(content2)"><mat-icon>star</mat-icon>Rate Us</a>
 </mat-nav-list>
 
 <ng-template #content let-c="close" let-d="dismiss">
@@ -86,10 +69,10 @@
           class="option"
           placeholder="Degree"
           name="draft"
-          [(ngModel)]="draftID"
+          [(ngModel)]="draftId"
         >
-          <option *ngFor="let i of draft" value="{{ i.draftID }}">
-            {{ i.name }}
+          <option *ngFor="let draft of drafts" value="{{ draft.draftID }}">
+            {{ draft.name }}
           </option>
         </select>
       </div>
@@ -127,7 +110,7 @@
           style="display: inline-block"
         >
           <li
-            (click)="countStar(star)"
+            (click)="rateResumeBuilder(star)"
             [ngClass]="{ selected: star <= selectedValue }"
           >
             <i class="fa fa-star"></i>

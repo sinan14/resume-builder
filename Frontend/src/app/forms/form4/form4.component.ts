@@ -11,8 +11,13 @@ export class Form4Component {
   ID2 = localStorage.getItem('UserId');
   constructor(public _formService: FormService, private _router: Router) {}
 
-  resumedata4() {
-    this._formService.postResume(this._formService.Resumedata).subscribe(
+  createResume() {
+    const form = this._formService.Resumedata;
+    const User = JSON.parse(localStorage.getItem('User'));
+    //@ts-ignore
+    form.user = User._id;
+    console.log(form);
+    this._formService.postResume(form).subscribe(
       (res: any) => {
         if (res.status === 'success') {
           const resumeId = JSON.stringify(res.data._id);

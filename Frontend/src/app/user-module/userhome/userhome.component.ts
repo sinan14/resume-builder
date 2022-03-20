@@ -8,13 +8,13 @@ import { UserService } from '../../auth/services/user.service';
 })
 export class UserhomeComponent implements OnInit {
   @ViewChild('videoPlayer', { static: false }) videoplayer: ElementRef;
-  ID2 = localStorage.getItem('UserId');
 
-  constructor(public check: UserService) {}
+  constructor(public _userService: UserService) {}
 
   ngOnInit(): void {
-    this.check.check(this.ID2);
-    this.check.LoggedIn();
+    const user = JSON.parse(localStorage.getItem('User'));
+    this._userService.check(user._id);
+    // this.check.LoggedIn();
   }
   toggleVideo() {
     this.videoplayer.nativeElement.play();

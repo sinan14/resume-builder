@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { FormService } from 'src/app/services/form.service';
 import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
@@ -7,7 +8,7 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class UserService {
   private _api: string = environment.baseUrl;
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private _formService: FormService) {}
   login(user: any) {
     const endPoint = `${this._api}/user/login`;
     return this.http.post<any>(endPoint, user);
@@ -19,14 +20,12 @@ export class UserService {
   }
 
   getusers() {
-    return this.http.get('http://localhost:3000/getusers');
+    const endPoint = `${this._api}/user`;
+    return this.http.get(endPoint);
   }
-  rate(star: any) {
-    return this.http
-      .put('http://localhost:3000/user/rate', star)
-      .subscribe((data) => {
-        console.log(data);
-      });
+  rateTheApp(star: any) {
+    const endPoint = `${this._api}/user/updateMe`;
+    return this.http.patch(endPoint, star);
   }
 
   deleteuser(id: any) {
@@ -38,22 +37,27 @@ export class UserService {
   messageback(mess: any) {
     return this.http.post('http://localhost:3000/messageback', mess);
   }
+  // checkForActiveResume
 
-  check(data: any) {
-    this.http.get('http://localhost:3000/check/' + data).subscribe((res) => {
-      if (res) {
-        var x = 'checked';
-        localStorage.setItem('check', x);
-      } else {
-        localStorage.removeItem('check');
-      }
-    });
+  check(id: any) {
+    const endPoint = `${this._api}/resume/${id}/get-user-resumes?active=false`;
+    return this.http.get(endPoint).subscribe(
+      (res: any) => {
+        console.log(res);
+        if (res.status === 'success') {
+          if (res.data.length > 0) {
+            localStorage.setItem('checked', 'hasActiveResume');
+            this._formService.Updatedata = res.data[0];
+          }
+        }
+      },
+      (error: any) => {}
+    );
   }
 
   LoggedIn() {
-    var x = localStorage.getItem('check');
-    if (x == 'checked') {
-      console.log('ss');
+    const x = localStorage.getItem('checked');
+    if (x == 'hasActiveResume') {
       return true;
     } else {
       return false;

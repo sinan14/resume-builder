@@ -43,7 +43,9 @@ export class LoginComponent {
     this._auth.login(this.userForm.value).subscribe((res) => {
       console.log(res);
       if (res.status === 'success') {
-        localStorage.setItem('UserId', res.data.user._id);
+        const user = res.data.user;
+        delete user.role;
+        localStorage.setItem('User', JSON.stringify(user));
         localStorage.setItem('token', res.token);
         Swal.fire({
           icon: 'success',

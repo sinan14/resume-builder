@@ -89,6 +89,7 @@ exports.protect = catchAsync(async (req, res, next) => {
     req.headers.authorization.startsWith('Bearer')
   ) {
     token = req.headers.authorization.split(' ')[1];
+    console.log(token);
   } else if (req.cookies.jwt) {
     token = req.cookies.jwt;
   }
@@ -122,6 +123,8 @@ exports.protect = catchAsync(async (req, res, next) => {
 
   // GRANT ACCESS TO PROTECTED ROUTE
   req.user = currentUser;
+  console.log(req.user);
+
   res.locals.user = currentUser;
   next();
 });
